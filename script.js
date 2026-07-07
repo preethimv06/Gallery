@@ -74,7 +74,7 @@ function filterSelection(category) {
 
     });
 
- // Active button
+    // Active button
     document.querySelectorAll(".buttons button").forEach(btn => {
         btn.classList.remove("active");
     });
