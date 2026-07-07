@@ -1,68 +1,96 @@
-const buttons=document.querySelectorAll(".buttons button");
-const cards=document.querySelectorAll(".card");
+// All gallery images
+const galleryImages = document.querySelectorAll(".gallery .image img");
 
-buttons.forEach(button=>{
+let filteredImages = [];
+let currentIndex = 0;
 
-button.addEventListener("click",()=>{
+// Attach click event to every image
+galleryImages.forEach(img => {
+    img.addEventListener("click", function () {
 
-document.querySelector(".active").classList.remove("active");
+        // Get only currently visible images
+        filteredImages = Array.from(document.querySelectorAll(".gallery .image"))
+            .filter(div => window.getComputedStyle(div).display !== "none")
+            .map(div => div.querySelector("img"));
 
-button.classList.add("active");
+        currentIndex = filteredImages.indexOf(this);
 
-let filter=button.dataset.filter;
+        openLightbox();
+    });
+});
 
-cards.forEach(card=>{
+function openLightbox() {
 
-if(filter==="all"){
+    document.getElementById("lightbox").style.display = "flex";
 
-card.classList.remove("hide");
+    document.getElementById("lightbox-img").src =
+        filteredImages[currentIndex].src;
+}
+
+function closeLightbox() {
+
+    document.getElementById("lightbox").style.display = "none";
 
 }
 
-else{
+function changeSlide(step) {
 
-card.classList.toggle("hide",
+    currentIndex += step;
 
-!card.classList.contains(filter)
+    if (currentIndex < 0)
+        currentIndex = filteredImages.length - 1;
 
-);
+    if (currentIndex >= filteredImages.length)
+        currentIndex = 0;
+
+    document.getElementById("lightbox-img").src =
+        filteredImages[currentIndex].src;
+
+}
+
+function filterSelection(category) {
+
+    const allImages = document.querySelectorAll(".gallery .image");
+
+    allImages.forEach(image => {
+
+        if (category === "all") {
+
+            image.style.display = "block";
+
+        } else {
+
+            if (image.classList.contains(category)) {
+
+                image.style.display = "block";
+
+            } else {
+
+                image.style.display = "none";
+
+            }
+
+        }
+
+    });
+
+    // Active button
+    document.querySelectorAll(".buttons button").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    event.target.classList.add("active");
 
 }
 
-});
+window.onclick = function (e) {
 
-});
+    const lightbox = document.getElementById("lightbox");
 
-});
+    if (e.target === lightbox) {
 
-const preview=document.getElementById("preview");
+        closeLightbox();
 
-const lightbox=document.querySelector(".lightbox");
-
-cards.forEach(card=>{
-
-card.onclick=()=>{
-
-preview.src=card.querySelector("img").src;
-
-lightbox.style.display="flex";
-
-};
-
-});
-
-document.getElementById("close").onclick=()=>{
-
-lightbox.style.display="none";
-
-};
-
-lightbox.onclick=(e)=>{
-
-if(e.target===lightbox){
-
-lightbox.style.display="none";
-
-}
+    }
 
 };
