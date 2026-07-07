@@ -29,12 +29,23 @@ const images = [
 
 ];
 
-let current = 0;
+let filteredImages = [...images];
+let currentCategory = "all";
+
+function openLightbox(index){
+
+    current = index;
+
+    document.getElementById("lightbox").style.display = "flex";
+
+    document.getElementById("lightbox-img").src = filteredImages[current];
+
+}
 
 function openLightbox(index){
 current=index;
 document.getElementById("lightbox").style.display="flex";
-document.getElementById("lightbox-img").src=images[current];
+document.getElementById("lightbox-img").src=filteredImages[current];
 }
 
 function closeLightbox(){
@@ -43,23 +54,26 @@ document.getElementById("lightbox").style.display="none";
 
 function changeSlide(step){
 
-current += step;
+    current += step;
 
-if(current<0){
-current=images.length-1;
-}
+    if(current < 0){
+        current = filteredImages.length - 1;
+    }
 
-if(current>=images.length){
-current=0;
-}
+    if(current >= filteredImages.length){
+        current = 0;
+    }
 
-document.getElementById("lightbox-img").src=images[current];
+    document.getElementById("lightbox-img").src = filteredImages[current];
 
 }
 
 function filterSelection(category){
 
-let images=document.querySelectorAll(".image");
+let images = document.querySelectorAll(".image");
+  currentCategory = category;
+
+filteredImages = [];
 
 images.forEach(function(img){
 
@@ -69,10 +83,13 @@ img.style.display="block";
 else{
 
 if(img.classList.contains(category)){
-img.style.display="block";
-}
-else{
-img.style.display="none";
+
+    img.style.display = "block";
+
+    filteredImages.push(
+        img.querySelector("img").src
+    );
+
 }
 
 }
