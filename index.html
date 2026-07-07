@@ -3,149 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Image Gallery</title>
+
+<title>Responsive Image Gallery</title>
+
 <link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
+
 <body>
 
-<h1>Gallery</h1>
+<div class="container">
+
+<h1>Image Gallery</h1>
+
+<div class="buttons">
 
 <button class="active" data-filter="all">All</button>
 <button data-filter="nature">Nature</button>
 <button data-filter="city">City</button>
-<button data-filter="animal">Animals</button>s</button>
-
-<div class="gallery">
-
-    <div class="image nature">
-       <img src="images/nature/nature image 1.jpeg">
-    </div>
-
-    <div class="image nature">
-        <img src="images/nature/nature image 2.jpeg">
-    </div>
-
-     <div class="image nature">
-        <img src="images/nature/nature image 3.jpeg">
-    </div>
-
-    <div class="image nature">
-        <img src="images/nature/nature image 4.jpeg">
-    </div>
-
-    <div class="image nature">
-        <img src="images/nature/nature image 5.jpeg">
-    </div>
-
-    <div class="image nature">
-       <img src="images/nature/nature image 6.jpeg">
-    </div>
-
-    <div class="image nature">
-        <img src="images/nature/nature image 7.jpeg">
-    </div>
-
-    <div class="image nature">
-        <img src="images/nature/nature image 8.jpeg">
-    </div>
-
-    <div class="image nature">
-        <img src="images/nature/nature image 9.jpeg">
-    </div>
-
-    <div class="image city">
-        <img src="images/city/city image 1.jpeg">
-    </div>
-
-    <div class="image city">
-        <img src="images/city/city image 2.jpeg">
-    </div>
-    
-  <div class="image city">
-        <img src="images/city/city image 3.jpeg">
-    </div>
-
-      <div class="image city">
-        <img src="images/city/city image 4.jpeg">
-    </div>
-
-      <div class="image city">
-        <img src="images/city/city image 5.jpeg">
-    </div>
-
-      <div class="image city">
-        <img src="images/city/city image 6.jpeg">
-    </div>
-
-      <div class="image city">
-        <img src="images/city/city image 7.jpeg">
-    </div>
-
-      <div class="image city">
-        <img src="images/city/city image 8.jpeg">
-    </div>
-
-      <div class="image city">
-       <img src="images/city/city image 9.jpeg">
-    </div>
-
-    <div class="image animal">
-        <img src="images/animal/animal image 1.jpeg">
-    </div>
-
-    <div class="image animal">
-        <img src="images/animal/animal image 2.jpeg">
-    </div>
-
-    <div class="image animal">
-        <img src="images/animal/animal image 3.jpeg">
-    </div>
-
-    <div class="image animal">
-      <img src="images/animal/animal image 4.jpeg">
-    </div>
-
-    <div class="image animal">
-       <img src="images/animal/animal image 5.jpeg">
-    </div>
-
-    <div class="image animal">
-       <img src="images/animal/animal image 6.jpeg">
-    </div>
-
-    <div class="image animal">
-        <img src="images/animal/animal image 7.jpeg">
-    </div>
-
-    <div class="image animal">
-        <img src="images/animal/animal image 8.jpeg">
-    </div>
-
-    <div class="image animal">
-        <img src="images/animal/animal image 9.jpeg">
-    </div>
-
+<button data-filter="animal">Animals</button>
 
 </div>
 
-<div id="lightbox">
+<div class="gallery">
 
-<span class="close" onclick="closeLightbox()">&times;</span>
+<div class="card nature">
+<img src="images/img1.jpg">
+</div>
 
-<button class="prev" onclick="changeSlide(-1)">❮</button>
+<div class="card city">
+<img src="images/img2.jpg">
+</div>
 
-<img id="lightbox-img">
+<div class="card animal">
+<img src="images/img3.jpg">
+</div>
 
-<button class="next" onclick="changeSlide(1)">❯</button>
+<div class="card nature">
+<img src="images/img4.jpg">
+</div>
+
+<div class="card city">
+<img src="images/img5.jpg">
+</div>
+
+<div class="card animal">
+<img src="images/img6.jpg">
+</div>
+
+</div>
+
+</div>
+
+<div class="lightbox">
+
+<span id="close">&times;</span>
+
+<img id="preview">
 
 </div>
 
 <script src="script.js"></script>
-
-<footer>
-    © 2026 Image Gallery | Designed by Preethi
-</footer>
 
 </body>
 </html>
