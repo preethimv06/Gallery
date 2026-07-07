@@ -74,13 +74,13 @@ function filterSelection(category) {
 
     });
 
-    // Active button
+ // Active button
     document.querySelectorAll(".buttons button").forEach(btn => {
         btn.classList.remove("active");
     });
 
-    event.target.classList.add("active");
-
+  // Add active class to clicked button
+    button.classList.add("active");
 }
 
 window.onclick = function (e) {
