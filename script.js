@@ -1,96 +1,68 @@
-// All gallery images
-const galleryImages = document.querySelectorAll(".gallery .image img");
+const buttons=document.querySelectorAll(".buttons button");
+const cards=document.querySelectorAll(".card");
 
-let filteredImages = [];
-let currentIndex = 0;
+buttons.forEach(button=>{
 
-// Attach click event to every image
-galleryImages.forEach(img => {
-    img.addEventListener("click", function () {
+button.addEventListener("click",()=>{
 
-        // Get only currently visible images
-        filteredImages = Array.from(document.querySelectorAll(".gallery .image"))
-            .filter(div => window.getComputedStyle(div).display !== "none")
-            .map(div => div.querySelector("img"));
+document.querySelector(".active").classList.remove("active");
 
-        currentIndex = filteredImages.indexOf(this);
+button.classList.add("active");
 
-        openLightbox();
-    });
+let filter=button.dataset.filter;
+
+cards.forEach(card=>{
+
+if(filter==="all"){
+
+card.classList.remove("hide");
+
+}
+
+else{
+
+card.classList.toggle("hide",
+
+!card.classList.contains(filter)
+
+);
+
+}
+
 });
 
-function openLightbox() {
+});
 
-    document.getElementById("lightbox").style.display = "flex";
+});
 
-    document.getElementById("lightbox-img").src =
-        filteredImages[currentIndex].src;
-}
+const preview=document.getElementById("preview");
 
-function closeLightbox() {
+const lightbox=document.querySelector(".lightbox");
 
-    document.getElementById("lightbox").style.display = "none";
+cards.forEach(card=>{
 
-}
+card.onclick=()=>{
 
-function changeSlide(step) {
+preview.src=card.querySelector("img").src;
 
-    currentIndex += step;
+lightbox.style.display="flex";
 
-    if (currentIndex < 0)
-        currentIndex = filteredImages.length - 1;
+};
 
-    if (currentIndex >= filteredImages.length)
-        currentIndex = 0;
+});
 
-    document.getElementById("lightbox-img").src =
-        filteredImages[currentIndex].src;
+document.getElementById("close").onclick=()=>{
 
-}
+lightbox.style.display="none";
 
-function filterSelection(category) {
+};
 
-    const allImages = document.querySelectorAll(".gallery .image");
+lightbox.onclick=(e)=>{
 
-    allImages.forEach(image => {
+if(e.target===lightbox){
 
-        if (category === "all") {
-
-            image.style.display = "block";
-
-        } else {
-
-            if (image.classList.contains(category)) {
-
-                image.style.display = "block";
-
-            } else {
-
-                image.style.display = "none";
-
-            }
-
-        }
-
-    });
-
-    // Active button
-    document.querySelectorAll(".buttons button").forEach(btn => {
-        btn.classList.remove("active");
-    });
-
-    event.target.classList.add("active");
+lightbox.style.display="none";
 
 }
-
-window.onclick = function (e) {
-
-    const lightbox = document.getElementById("lightbox");
-
-    if (e.target === lightbox) {
-
-        closeLightbox();
-
-    }
 
 };
